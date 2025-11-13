@@ -16,6 +16,8 @@ class Index extends Component
     public string $sortBy = '';
     public string $sortDirection = '';
 
+    public array $filters = [];
+
     public function boot(BeerService $beerService)
     {
         $this->beerService = $beerService;
@@ -28,10 +30,22 @@ class Index extends Component
         $this->resetPage();
     }
 
+    public function filter()
+    {
+        $this->validate([
+            'filters.name' => 'nullable|string|min:3|max:255',
+            'filters.prop_filter' => 'nullable',
+            'filters.pro_filter_rule' => 'required_with:filters.prop_filter',
+            'filters.prop_filter_value' => 'required_with:filters.prop_filter_rule',
+        ]);
+
+        $this->resetPage();
+    }
+
     public function render()
     {
         return view('livewire.beers.index', [
-            'beers' => $this->beerService->getBeers($this->sortBy, $this->sortDirection),
+            'beers' => $this->beerService->getBeers($this->sortBy, $this->sortDirection, $this->filters),
         ]);
     }
 }
