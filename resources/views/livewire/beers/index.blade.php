@@ -66,17 +66,31 @@
                     <x-table.column></x-table.column>
 
                     <x-table.rows>
-                        <x-table.row>
-                            <x-table.cell>
-
-                            </x-table.cell>
-                        </x-table.row>
-
+                        @foreach($beers as $beer)
+                            <x-table.row wire:key="beer-{{ $beer['id'] }}">
+                                <x-table.cell>
+                                    {{ $beer['name'] }}
+                                </x-table.cell>
+                                <x-table.cell>
+                                    {{ $beer['first_brewed_at']->format('d/n/Y') }}
+                                </x-table.cell>
+                                <x-table.cell>{{ $beer['abv'] }}</x-table.cell>
+                                <x-table.cell>{{ $beer['ibu'] }}</x-table.cell>
+                                <x-table.cell>{{ $beer['ebc'] }}</x-table.cell>
+                                <x-table.cell>{{ $beer['ph'] }}</x-table.cell>
+                                <x-table.cell>{{ $beer['volume'] }}</x-table.cell>
+                                <x-table.cell></x-table.cell>
+                            </x-table.row>
+                        @endforeach
                     </x-table.rows>
 
                 </x-table.columns>
 
             </x-table>
+
+            <div class="mt-6">
+                {{ $beers->links() }}
+            </div>
         </x-section>
     </flux:main>
 </div>
