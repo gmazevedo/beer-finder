@@ -32,4 +32,7 @@ Route::middleware(['auth'])->group(function () {
             ),
         )
         ->name('two-factor.show');
+
+    Route::get('beers', \App\Livewire\Beers\Index::class)->name('beers.index');
+    Route::get('beers/create', function(){})->name('beers.create');
 });
