@@ -43,6 +43,12 @@ class Index extends Component
         $this->resetPage();
     }
 
+    public function remove(Beer $beer)
+    {
+        $beer->delete();
+        Toaster::info("{$beer->name} foi removida com sucesso.");
+    }
+
     public function render()
     {
         return view('livewire.beers.index', [
