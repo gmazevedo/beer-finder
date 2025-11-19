@@ -6,6 +6,7 @@ use App\Models\Beer;
 use App\Services\BeerService;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Masmerise\Toaster\Toaster;
 
 class Index extends Component
 {
