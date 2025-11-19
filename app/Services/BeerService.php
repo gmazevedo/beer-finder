@@ -12,7 +12,7 @@ class BeerService
 
         if (isset($filters['name']))
         {
-            $query->where('name', 'like', '%' . $filters['name'] . '%');
+            $query->where('name', 'ilike', '%' . $filters['name'] . '%');
         }
 
         if (!empty($filters['prop_filter'])
