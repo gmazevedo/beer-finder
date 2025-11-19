@@ -1,5 +1,5 @@
 <div>
-    <flux:main containe="">
+    <flux:main container="">
         <div class="flex flex-row items-center justify-between w-full">
             <div>
                 <flux:heading size="xl">Cervejas</flux:heading>
@@ -123,7 +123,19 @@
                                 <x-table.cell>{{ $beer['ebc'] }}</x-table.cell>
                                 <x-table.cell>{{ $beer['ph'] }}</x-table.cell>
                                 <x-table.cell>{{ $beer['volume'] }}</x-table.cell>
-                                <x-table.cell></x-table.cell>
+                                <x-table.cell>
+
+                                    <flux:button
+                                        href="{{ route('beers.update', $beer['id']) }}"
+                                        variant="ghost" size="sm" icon="pencil" class="cursor-pointer"
+                                        inset="top bottom"></flux:button>
+
+                                    <flux:button
+                                        wire:click="remove({{ $beer['id'] }})"
+                                        variant="ghost" size="sm" icon="trash" class="cursor-pointer"
+                                        inset="top bottom"></flux:button>
+
+                                </x-table.cell>
                             </x-table.row>
                         @endforeach
                     </x-table.rows>
