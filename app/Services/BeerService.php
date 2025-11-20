@@ -3,10 +3,11 @@
 namespace App\Services;
 
 use App\Models\Beer;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class BeerService
 {
-    public function getBeers(string $sortBy, string $sortDirection, array $filters)
+    public function getBeers(string $sortBy, string $sortDirection, array $filters): LengthAwarePaginator
     {
         $query = Beer::query();
 
