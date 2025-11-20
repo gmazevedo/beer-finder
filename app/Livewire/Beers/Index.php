@@ -19,19 +19,19 @@ class Index extends Component
 
     public array $filters = [];
 
-    public function boot(BeerService $beerService)
+    public function boot(BeerService $beerService): void
     {
         $this->beerService = $beerService;
     }
 
-    public function sort($sortBy)
+    public function sort($sortBy): void
     {
         $this->sortBy = $sortBy;
         $this->sortDirection = !empty($this->sortDirection) && $this->sortDirection === 'asc' ? 'desc' : 'asc';
         $this->resetPage();
     }
 
-    public function filter()
+    public function filter(): void
     {
         $this->validate([
             'filters.name' => 'nullable|string|min:3|max:255',
@@ -43,13 +43,13 @@ class Index extends Component
         $this->resetPage();
     }
 
-    public function remove(Beer $beer)
+    public function remove(Beer $beer): void
     {
         $beer->delete();
         Toaster::info("{$beer->name} foi removida com sucesso.");
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
         return view('livewire.beers.index', [
             'beers' => $this->beerService->getBeers($this->sortBy, $this->sortDirection, $this->filters),
