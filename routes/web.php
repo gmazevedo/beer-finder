@@ -11,7 +11,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
+Route::get('dashboard', \App\Livewire\Chat\Chat::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
