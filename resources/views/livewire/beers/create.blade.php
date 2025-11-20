@@ -5,7 +5,7 @@
             <flux:text class="mt-2 mb-6 text-base">Criar Cerveja</flux:text>
         </div>
 
-        <flux:button href="{{ route('beers.index')  }}" icon="arrow-uturn-left">Voltar</flux:button>
+        <flux:button variant="ghost" icon="arrow-left" href="{{ route('beers.index')  }}">Voltar</flux:button>
     </div>
 
     <x-section>
