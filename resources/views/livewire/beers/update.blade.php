@@ -136,6 +136,10 @@
                     />
                 </flux:field>
 
+                <flux:separator />
+
+                <livewire:components.image-uploader :model="$beer ?? null" storage-path="beers" />
+
                 <div class="flex items-center justify-end gap-4">
                     <flux:button variant="ghost" :href="route('beers.index')" wire:navigate>
                         Cancelar
