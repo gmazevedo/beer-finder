@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -61,4 +63,13 @@ class Store extends Model
         return $this->morphOne(Image::class, 'imageable')->where('is_cover', 1);
     }
 
+    #[Scope]
+    public function userScope(Builder $query): \LaravelIdea\Helper\App\Models\_IH_Store_QB|Builder
+    {
+        if (!auth()->user()->is_admin) {
+            $query->where('user_id', auth()->id());
+        }
+
+        return $query;
+    }
 }
